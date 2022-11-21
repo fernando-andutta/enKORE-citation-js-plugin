@@ -1,9 +1,9 @@
 import { logger } from "@citation-js/core";
 import * as response from "./response.js";
 import { parseProp, getLabel } from "./prop.js";
-import props from "./props.json";
-import customProps from "./customProps.json";
-import ignoredProps from "./ignoredProps.json";
+import props from "./props.json" assert { type: "json" };
+import customProps from "./customProps.json" assert { type: "json" };
+import ignoredProps from "./ignoredProps.json" assert { type: "json" };
 
 /**
  * @access private

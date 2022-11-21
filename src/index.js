@@ -17,7 +17,7 @@ import * as entity from "./entity.js";
 import * as prop from "./prop.js";
 import * as url from "./url.js";
 import * as api from "./api.js";
-import config from "./config.json";
+import config from "./config.json" assert { type: "json" };
 
 /**
  * @constant {module:@citation-js/core.plugins~pluginRef} ref

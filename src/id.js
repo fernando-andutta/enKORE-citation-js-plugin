@@ -1,5 +1,5 @@
 import wdk from "wikidata-sdk";
-import config from "./config.json";
+import config from "./config.json" assert { type: "json" };
 
 /**
  * Get Wikidata JSON from Wikidata IDs
