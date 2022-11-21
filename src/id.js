@@ -1,5 +1,5 @@
-import wdk from 'wikidata-sdk'
-import config from './config.json'
+import wdk from "wikidata-sdk";
+import config from "./config.json";
 
 /**
  * Get Wikidata JSON from Wikidata IDs
@@ -13,12 +13,9 @@ import config from './config.json'
  *
  * @return {Object} Wikidata JSON
  */
-function parseWikidata (data, langs) {
-  const list = [].concat(data)
-  return [].concat(wdk.getManyEntities(list, langs || config.langs))
+function parseWikidata(data, langs) {
+	const list = [].concat(data);
+	return [].concat(wdk.getManyEntities(list, langs || config.langs));
 }
 
-export {
-  parseWikidata as parse,
-  parseWikidata as default
-}
+export { parseWikidata as parse, parseWikidata as default };

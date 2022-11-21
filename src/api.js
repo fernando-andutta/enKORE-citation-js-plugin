@@ -1,6 +1,6 @@
-import { util } from '@citation-js/core'
+import { util } from "@citation-js/core";
 
-const { fetchFile, fetchFileAsync } = util
+const { fetchFile, fetchFileAsync } = util;
 
 /**
  * Fetch API responses.
@@ -10,8 +10,8 @@ const { fetchFile, fetchFileAsync } = util
  * @param {String|Array<String>} urls
  * @return {Array<Object>}
  */
-export function parse (urls) {
-  return [].concat(urls).map(fetchFile)
+export function parse(urls) {
+	return [].concat(urls).map(fetchFile);
 }
 
 /**
@@ -22,6 +22,6 @@ export function parse (urls) {
  * @param {String|Array<String>} urls
  * @return {Array<Object>}
  */
-export function parseAsync (urls) {
-  return Promise.all([].concat(urls).map(fetchFileAsync))
+export function parseAsync(urls) {
+	return Promise.all([].concat(urls).map(fetchFileAsync));
 }
