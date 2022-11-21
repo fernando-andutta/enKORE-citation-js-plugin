@@ -1,4 +1,4 @@
-import { simplify } from "wikidata-sdk";
+import wdk from "wikidata-sdk";
 import { parse as fetch, parseAsync as fetchAsync } from "./api.js";
 import { parse as getUrls } from "./id.js";
 
@@ -156,7 +156,7 @@ function completeResponse(entities, old) {
 }
 
 function simplifyEntities(entities) {
-	const simplified = simplify.entities(entities, SIMPLIFY_OPTS);
+	const simplified = wdk.simplify.entities(entities, SIMPLIFY_OPTS);
 	for (const id in entities) {
 		const claims = entities[id].claims;
 		if (claims.P348) {
