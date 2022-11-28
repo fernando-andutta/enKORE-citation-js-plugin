@@ -89,6 +89,17 @@ function getTitle(value) {
 	return value.claims.P1476 ? value.claims.P1476[0].value : getLabel(value);
 }
 
+function getAllWithPropertyEntity(
+	data,
+	{ property = "P31", entity = "Q41719" } = {},
+) {
+	return data.filter(
+		(item) =>
+			item?.value?.claims?.[property]?.filter((y) => y.value.id == entity)
+				.length,
+	);
+}
+
 /**
  * Turn array of entities into comma-separated list of labels.
  *
@@ -99,7 +110,11 @@ function getTitle(value) {
  */
 function parseKeywords(values, type = null) {
 	if (type === "hypothesis") {
-		return values.map((x) => x);
+		const hypos = getAllWithPropertyEntity(values);
+		return hypos.map(({ value: { id, labels } }) => ({
+			id: id,
+			label: labels.en,
+		}));
 	} else {
 		return values.map(({ value }) => getLabel(value)).join(",");
 	}
