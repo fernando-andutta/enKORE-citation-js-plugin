@@ -97,8 +97,12 @@ function getTitle(value) {
  * @param {Array<Object>} values
  * @return {String} Labels
  */
-function parseKeywords(values) {
-	return values.map(({ value }) => getLabel(value)).join(",");
+function parseKeywords(values, type = null) {
+	if (type === "hypothesis") {
+		return values.map((x) => x);
+	} else {
+		return values.map(({ value }) => getLabel(value)).join(",");
+	}
 }
 
 /**
@@ -239,6 +243,9 @@ export function parseProp(prop, value, entity) {
 
 		case "event-date":
 			return parseDateRange(value);
+
+		case "hypothesis":
+			return parseKeywords(value, "hypothesis");
 
 		case "keyword":
 			return parseKeywords(value);

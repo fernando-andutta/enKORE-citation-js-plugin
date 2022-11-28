@@ -49,6 +49,8 @@ const FETCH_ADDITIONAL = {
 	P921: {
 		// reviewed-author
 		P50: null,
+		// hypothesis
+		P31: null,
 	},
 
 	// language
