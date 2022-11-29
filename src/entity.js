@@ -127,11 +127,34 @@ export function parseEntity(entity) {
 	// BEGIN: Hot-fix some types
 
 	// P921 (main subject) is used for review subjects and keywords
-	if (data.type.slice(0, 6) === "review") {
-		delete data.keyword;
-	} else {
-		delete data["reviewed-title"];
-		delete data["reviewed-author"];
+	// if (data.type.slice(0, 6) === "review") {
+	// 	delete data.keyword;
+	// } else {
+	// 	delete data["reviewed-title"];
+	// 	delete data["reviewed-author"];
+	// }
+
+	// console.log(`called in: ${data.type}`);
+	// console.log(data.keyword);
+	// console.log(data["reviewed-title"]);
+	// console.log(data["reviewed-author"]);
+	// console.log(data["hypothesis"]);
+	switch (data.type) {
+		case "keyword":
+			delete data["reviewed-title"];
+			delete data["reviewed-author"];
+			delete data["hypothesis"];
+			break;
+		case data["reviewed-title"]:
+		case data["reviewed-author"]:
+			delete data.keyword;
+			delete data["hypothesis"];
+			break;
+		case data["hypothesis"]:
+			delete data["reviewed-title"];
+			delete data["reviewed-author"];
+			delete data.keyword;
+			break;
 	}
 
 	if (data.recipient) {
