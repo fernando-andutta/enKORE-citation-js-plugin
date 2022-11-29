@@ -89,7 +89,7 @@ function getTitle(value) {
 	return value.claims.P1476 ? value.claims.P1476[0].value : getLabel(value);
 }
 
-function getAllWithPropertyEntity(
+function filterByPropertyEntity(
 	data,
 	{ property = "P31", entity = "Q41719" } = {},
 ) {
@@ -109,14 +109,17 @@ function getAllWithPropertyEntity(
  * @return {String} Labels
  */
 function parseKeywords(values, type = null) {
+	const hypos = filterByPropertyEntity(values);
 	if (type === "hypothesis") {
-		const hypos = getAllWithPropertyEntity(values);
 		return hypos.map(({ value: { id, labels } }) => ({
 			id: id,
 			label: labels.en,
 		}));
 	} else {
-		return values.map(({ value }) => getLabel(value)).join(",");
+		return values
+			.filter((x) => !hypos.includes(x))
+			.map(({ value }) => getLabel(value))
+			.join(",");
 	}
 }
 
