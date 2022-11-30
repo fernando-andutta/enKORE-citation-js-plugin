@@ -60,9 +60,10 @@ function parseNames(values) {
 	values
 		.map(parseName)
 		.sort((a, b) => b._ordinal - a._ordinal)
-		.forEach((name) => {
-			name._ordinal ? (placed[name._ordinal] = name) : unplaced.push(name);
+		.forEach((item) => {
+			item._ordinal ? (placed[item._ordinal] = item) : unplaced.push(item);
 		});
+	console.log({ placed, unplaced });
 	return placed.push(...unplaced);
 }
 
