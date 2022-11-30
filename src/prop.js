@@ -55,14 +55,15 @@ function parseName({ value, qualifiers }) {
  * @return {Array<Object>} Array with name objects
  */
 function parseNames(values) {
-	let names = [];
+	let placed = [];
+	let unplaced = [];
 	values
 		.map(parseName)
 		.sort((a, b) => b._ordinal - a._ordinal)
 		.forEach((name) => {
-			names[name._ordinal] = name;
+			name._ordinal ? (placed[name._ordinal] = name) : unplaced.push(name);
 		});
-	return names;
+	return placed.push(...unplaced);
 }
 
 /**
