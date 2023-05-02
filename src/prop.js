@@ -38,7 +38,7 @@ function parseName({ value, qualifiers }) {
 	if (!name) {
 		name = typeof value === "string" ? value : getLabel(value);
 	}
-	blabla = name ? parseNameString(name) : { literal: name };
+	name = name ? parseNameString(name) : { literal: name };
 	const ordinal = qualifiers.P1545 ? parseInt(qualifiers.P1545[0]) : null;
 	if (ordinal !== null) {
 		name._ordinal = ordinal;
